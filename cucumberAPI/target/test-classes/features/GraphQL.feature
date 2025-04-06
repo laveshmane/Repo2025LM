@@ -1,0 +1,13 @@
+@graphql
+Feature: Graph QL Query and Mutation
+
+
+  Scenario: Test Graph QL query
+    Given Build request for "query"
+    When post the data with valid "queryPayload"
+    Then assert status code "200"
+
+  Scenario: Test Graph QL "mutation"
+  	Given Build request for "mutation"
+    When post the data with valid "mutationPayload"
+    Then assert status code "200"

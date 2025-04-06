@@ -1,0 +1,59 @@
+package resources;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import pojo.addplace;
+
+public class TestdataBuild {
+
+	public addplace AddPlacePayload() {
+		pojo.addplace pj = new pojo.addplace();
+		pj.setAccuracy(87);
+		pj.setAddress("lavesh mane valase kar?");
+		pj.setLanguage("marathi::hi::eng");
+		pj.setName("lavesh");
+		pj.setPhone_number("784598215484");
+		pj.setWebsite("www.laveshmane.com");
+		
+		List<String> types = new ArrayList<String>();
+		types.add("typeA");
+		types.add("typeB");
+		
+		pj.setTypes(types);
+		
+		pojo.addplaceLocation loc = new pojo.addplaceLocation();
+		loc.setLat(-869846.454);
+		loc.setLng(+556464.145);
+		
+		pj.setLocation(loc);
+		return pj;
+	}
+	
+	public addplace addPlacePayload(String name, String phNumber, String address) {
+		pojo.addplace pj = new pojo.addplace();
+		pj.setAccuracy(87);
+		pj.setAddress(address);
+		pj.setLanguage("marathi::hi::eng");
+		pj.setName(name);
+		pj.setPhone_number(phNumber);
+		pj.setWebsite("www.laveshmane.com");
+		
+		List<String> types = new ArrayList<String>();
+		types.add("typeA");
+		types.add("typeB");
+		
+		pj.setTypes(types);
+		
+		pojo.addplaceLocation loc = new pojo.addplaceLocation();
+		loc.setLat(-869846.454);
+		loc.setLng(+556464.145);
+		
+		pj.setLocation(loc);
+		return pj;
+	}
+	
+	public String deletePlacePayload(String placeid) {
+		return "{\"place_id\":\""+placeid+"\"}";
+	}
+}

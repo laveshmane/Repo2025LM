@@ -1,0 +1,18 @@
+package stepDefinitions;
+
+import java.io.IOException;
+
+import io.cucumber.java.Before;
+
+public class Hooks {
+
+	@Before("@delete")
+	public void createPlaceId() throws IOException{
+		
+		placesStepDefinitions sd = new placesStepDefinitions();
+		if(sd.placeId==null) {
+		sd.user_adds_headers_and_query_params_for_with("POST", "maharaj", "218737218", "Delhi");
+		sd.the_method_is_and_resourse_is("POST", "postAPIResource");
+	}
+	}
+}

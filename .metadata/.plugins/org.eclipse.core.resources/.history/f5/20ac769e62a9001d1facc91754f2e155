@@ -1,0 +1,17 @@
+#Author: Lavesh Mane
+
+@LM
+Feature: addPlace with diffrent data
+
+  Scenario Outline: Verify addplace added sucessfully
+    Given user adds headers and query params for "addPlace" with "<name>""<phNumber>""<address>"
+    When the method is "post" and resourse is "addPlace"
+    Then assert that Status code is 200
+    And verify name is "<name>" for "getAPIResource"
+
+    Examples: 
+      | name  | phNumber | address  |
+      | lavesh |7981238723| success station heaven |
+    #  |raju|23879811278932|good morning village|
+    #  |manisha|786788876|heavy noodles dish sec 344|
+     

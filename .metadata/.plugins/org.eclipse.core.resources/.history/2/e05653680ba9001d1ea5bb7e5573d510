@@ -1,0 +1,28 @@
+package resources;
+
+import org.hamcrest.Matchers;
+
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+
+public class Baseclass {
+
+	RequestSpecification requestSpec;
+	long maxTimeout = 4000;
+	ResponseSpecification responseSpec;
+	
+	public RequestSpecification requestSpecification() {
+		requestSpec = new RequestSpecBuilder().setBaseUri("https://rahulshettyacademy.com/")
+				.setAccept(ContentType.JSON).addQueryParam("key", "qaclick123").build();
+		return requestSpec;
+	}
+	
+	public ResponseSpecification responseSpecification() {
+		responseSpec = new ResponseSpecBuilder().expectStatusCode(200).expectContentType(ContentType.JSON)
+				.expectResponseTime(Matchers.lessThan(maxTimeout)).build();
+		return responseSpec;
+	}
+}

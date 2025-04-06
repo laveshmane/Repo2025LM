@@ -1,0 +1,6 @@
+org.junit.ComparisonFailure: expected:<[2]00> but was:<[4]00>
+	at org.junit.Assert.assertEquals(Assert.java:117)
+	at org.junit.Assert.assertEquals(Assert.java:146)
+	at stepDefinitions.placesStepDefinitions.assert_that_status_code_is(placesStepDefinitions.java:80)
+	at ?.assert that Status code is 200(file:///C:/Users/manel/eclipse-workspace/cucumberAPI/src/test/java/features/addplacewithDiffData.feature:9)
+

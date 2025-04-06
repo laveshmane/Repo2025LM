@@ -1,0 +1,35 @@
+package stepDefinitions;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import resources.Baseclass;
+import static io.restassured.RestAssured.*;
+import static org.junit.Assert.assertEquals;
+
+import java.io.IOException;
+
+public class graphQLstepDefinition extends Baseclass{
+	RequestSpecification req;
+	Response resp;
+	
+	@Given("Build request for {String}")
+	public void build_request_for_query(String method) throws IOException {
+	   req = given().spec(GraphQLrequestspec());
+	}
+
+	@When("post the data with valid {string}")
+	public void post_the_data_with_valid(String string) {
+	    resp = req.when().body("").post();
+	}
+
+	@Then("assert status code {string}")
+	public void assert_status_code(String code) {
+	   assertEquals(resp.getStatusCode(), code);;
+	}
+
+	
+
+}

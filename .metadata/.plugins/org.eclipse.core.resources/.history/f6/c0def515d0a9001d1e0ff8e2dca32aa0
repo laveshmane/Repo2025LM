@@ -1,0 +1,83 @@
+package stepDefinitions;
+
+import static io.restassured.RestAssured.given;
+import static org.hamcrest.Matchers.equalTo;
+import static org.junit.Assert.assertEquals;
+
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import resources.ApiResourses;
+import resources.Baseclass;
+import resources.TestdataBuild;
+
+public class placesStepDefinitions extends Baseclass {
+
+	RequestSpecification request;
+	Response response;
+	TestdataBuild testdata = new TestdataBuild();
+
+	@Given("user adds headers and query params for {string}")
+	public void user_adds_headers_and_query_params_for(String api) throws IOException {
+		{
+			request = given().log().all().spec(requestSpecification()).body(testdata.AddPlacePayload());
+		}
+	}
+	
+	@Given("user adds headers and query params for {string} with {string}{string}{string}")
+	public void user_adds_headers_and_query_params_for_with(String api, String name, String phno, String adds) throws IOException {
+	 {
+		  request = given().log().all().spec(requestSpecification()).body(testdata.addPlacePayload(name,phno,adds));
+	  }
+		
+	}
+
+	@When("the method is {string} and resourse is {string}")
+	public void the_method_is_and_resourse_is(String method, String Resource) throws IOException {
+		{
+			ApiResourses resource = ApiResourses.valueOf(Resource);
+			
+			if(method.equalsIgnoreCase("POST"))
+			response = request.when().post(resource.getResource());
+			else if(method.equalsIgnoreCase("GET"))
+				response = request.when().get(resource.getResource());
+			else if(method.equalsIgnoreCase("DELETE"))
+				response = request.when().delete(resource.getResource());
+			else if(method.equalsIgnoreCase("PUT"))
+				response = request.when().put(resource.getResource());
+		}
+	}
+
+	@Then("response value {string} is {string}")
+	public void response_value_is(String key, String value) {
+		
+		assertEquals(getJsonValue(response, key), value);
+	}
+
+	@Then("assert that Status code is {int}")
+	public void assert_that_status_code_is(Integer code) {
+		{
+			String Exp = Integer.toString(code);
+			String act = Integer.toString(response.getStatusCode());
+
+			assertEquals(Exp, act);
+
+		}
+	}
+	
+	@Then("verify name is {string} for {string}")
+	public void verify_name_is_for(String name, String apiresource) throws IOException {
+		String placeId = getJsonValue(response, "place_id");
+		System.out.println(placeId);
+		
+		request = given().spec(requestSpecification()).queryParam("place_id", placeId);
+		the_method_is_and_resourse_is("GET", apiresource);
+		assertEquals(getJsonValue(response, "name"), name);
+	}
+}

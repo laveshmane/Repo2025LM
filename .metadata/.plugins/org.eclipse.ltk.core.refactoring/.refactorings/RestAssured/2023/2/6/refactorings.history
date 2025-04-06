@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 2 elements to &apos;cucumberAPI/src/test/java/pojo&apos;&#x0D;&#x0A;- Original project: &apos;RestAssured&apos;&#x0D;&#x0A;- Destination element: &apos;cucumberAPI/src/test/java/pojo&apos;&#x0D;&#x0A;- Original elements:&#x0D;&#x0A;     POJO.classes.addplaceLocation.java&#x0D;&#x0A;     POJO.classes.addplace.java" description="Copy compilation units" destination="=cucumberAPI/src\/test\/java=/optional=/true=/=/maven.pomderived=/true=/=/test=/true=/&lt;pojo" element1="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;POJO.classes{addplaceLocation.java" element2="/src=/optional=/true=/=/maven.pomderived=/true=/&lt;POJO.classes{addplace.java" files="0" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1676008556412" units="2" version="1.0"/>
+</session>

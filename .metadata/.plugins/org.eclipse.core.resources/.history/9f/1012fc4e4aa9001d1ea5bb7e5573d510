@@ -1,0 +1,8 @@
+Feature: Validate Place API
+
+  @Test1
+  Scenario: Verify Add place API
+    Given user adds headers and query params for "addPlace"
+    When the method is "post" and resourse is "postAPIResource"
+    Then assert that Status code is 200
+    And response value "status" is "OK"

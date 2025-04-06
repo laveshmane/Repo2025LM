@@ -1,0 +1,17 @@
+package practice.project;
+
+import org.testng.annotations.Test;
+
+public class priorityTestng {
+
+	@Test(priority = -10)
+	public void apple() {
+		System.out.println("apple");
+	}
+	
+	@Test(priority = -110)
+	public void ball() {
+		System.out.println("ball");
+	}
+}
+ 

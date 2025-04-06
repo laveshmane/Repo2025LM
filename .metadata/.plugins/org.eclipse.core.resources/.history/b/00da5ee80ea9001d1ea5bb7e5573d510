@@ -1,0 +1,58 @@
+package stepDefinitions;
+
+import static org.junit.Assert.assertEquals;
+
+import org.hamcrest.Matchers;
+import static io.restassured.RestAssured.*;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.builder.ResponseSpecBuilder;
+import io.restassured.http.ContentType;
+import io.restassured.path.json.JsonPath;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+import io.restassured.specification.ResponseSpecification;
+import resources.Baseclass;
+import resources.TestdataBuild;
+
+public class placesStepDefinitions extends Baseclass {
+
+	RequestSpecification request;
+	Response response;
+	TestdataBuild testdata = new TestdataBuild();
+
+	@Given("user adds headers and query params for {string}")
+	public void user_adds_headers_and_query_params_for(String api) {
+		if (api.equalsIgnoreCase("addPlace")) {
+			request = given().log().all().spec(requestSpecification()).body(testdata.AddPlacePayload());
+		}
+	}
+
+	@When("the method is {string} and resourse is {string}")
+	public void the_method_is_and_resourse_is(String method, String addPlaceResource) {
+		if (addPlaceResource.equalsIgnoreCase("addPlace") && method.equalsIgnoreCase("post")) {
+			response = request.when().post("maps/api/place/add/json").then().extract().response();
+		}
+	}
+
+	@Then("response value {string} is {string}")
+	public void response_value_is(String key, String value) {
+		System.out.println(response.asString());
+		JsonPath js = new JsonPath(response.asString());
+		System.out.println(js.get(key).toString());
+		//assertEquals(js.get(key).toString(), value);
+	}
+
+	@Then("assert that Status code is {int}")
+	public void assert_that_status_code_is(Integer code) {
+		if (code == 200) {
+			String Exp = Integer.toString(code);
+			String act = Integer.toString(response.getStatusCode());
+
+			assertEquals(Exp, act);
+
+		}
+	}
+}

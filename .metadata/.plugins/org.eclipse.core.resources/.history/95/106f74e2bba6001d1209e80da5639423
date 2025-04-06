@@ -1,0 +1,40 @@
+package demo.stepDefinations;
+
+import org.junit.runner.RunWith;
+
+import io.cucumber.java.PendingException;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import io.cucumber.junit.Cucumber;
+
+@RunWith(Cucumber.class)
+public class demoStepDefinationclass {
+
+    @Given("^user is logged on login page$")
+    public void user_is_logged_on_login_page() throws Throwable {
+        throw new PendingException();
+    }
+
+    @When("^user checks pay current dues$")
+    public void user_checks_pay_current_dues() throws Throwable {
+        throw new PendingException();
+    }
+
+    @Then("^verify payment complete message$")
+    public void verify_payment_complete_message() throws Throwable {
+        throw new PendingException();
+    }
+
+    @And("^logged into to application$")
+    public void logged_into_to_application() throws Throwable {
+        throw new PendingException();
+    }
+
+    @And("^clicks on submit button$")
+    public void clicks_on_submit_button() throws Throwable {
+        throw new PendingException();
+    }
+
+}

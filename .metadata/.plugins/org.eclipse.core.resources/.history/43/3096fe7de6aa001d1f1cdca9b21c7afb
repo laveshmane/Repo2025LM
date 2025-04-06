@@ -1,0 +1,28 @@
+package stepDefinitions;
+
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+import resources.Baseclass;
+import static io.restassured.RestAssured.*;
+
+public class graphQLstepDefinition extends Baseclass{
+
+	@Given("Build request for {String}")
+	public void build_request_for_query(String method) {
+	   given().
+	}
+
+	@When("post the data with valid {string}")
+	public void post_the_data_with_valid(String string) {
+	    
+	}
+
+	@Then("assert status code {string}")
+	public void assert_status_code(String string) {
+	   
+	}
+
+	
+
+}
